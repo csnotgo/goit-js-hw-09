@@ -17,13 +17,6 @@ function createPromise(position, delay) {
 const form = document.querySelector('form');
 
 form.addEventListener('submit', onFormSubmit);
-form.addEventListener('input', checkedValue);
-
-function checkedValue(e) {
-  form.delay.value;
-  form.step.value;
-  form.amount.value;
-}
 
 function onFormSubmit(e) {
   e.preventDefault();
