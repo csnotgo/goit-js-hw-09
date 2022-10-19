@@ -15,13 +15,14 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    const today = options.defaultDate.getDate();
-    if (selectedDates[0].getDate() <= today) {
+    if (selectedDates[0] < options.defaultDate) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       startBtn.disabled = false;
     }
     console.log(selectedDates[0]);
+    const date = convertMs(selectedDates[0] - options.defaultDate);
+    updateTimerValue(date);
   },
 };
 
@@ -31,10 +32,15 @@ startBtn.addEventListener('click', onBtnClick);
 startBtn.disabled = true;
 
 function onBtnClick(e) {
-  setInterval(() => {
+  const timeId = setInterval(() => {
     const currentTime = Date.now();
-    const time = convertMs(fp.selectedDates[0] - currentTime);
+    const deltaTime = fp.selectedDates[0] - currentTime;
+    const time = convertMs(deltaTime);
     updateTimerValue(time);
+
+    if (deltaTime < 1000) {
+      clearInterval(timeId);
+    }
   }, 1000);
 }
 
