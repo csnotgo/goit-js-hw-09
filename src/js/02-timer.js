@@ -21,8 +21,8 @@ const options = {
       startBtn.disabled = false;
     }
     console.log(selectedDates[0]);
-    const date = convertMs(selectedDates[0] - options.defaultDate);
-    updateTimerValue(date);
+    // const date = convertMs(selectedDates[0] - options.defaultDate);
+    // updateTimerValue(date);
   },
 };
 
